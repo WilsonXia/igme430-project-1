@@ -8,9 +8,13 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const urlStruct = {
   '/': httpResponses.getIndex,
   '/style.css': httpResponses.getCSS,
-  // '/getUsers': jsonResponses.getUsers,
-  '/notReal': jsonResponses.notReal,
-  // '/addUser': jsonResponses.addUser,
+  '/getPokemon': jsonResponses.getPokemon,
+  '/getPokemonType': jsonResponses.getPokemonType,
+  // '/getPokemonSize': jsonResponses.getPokemonSize,
+  '/getRandomPokemon': jsonResponses.getRandomPokemon,
+  // '/addPokemon': jsonResponses.addPokemon, // POST for name, type, size,
+  // '/addEvolution': jsonResponses.addEvolution,
+  notFound: jsonResponses.notFound,
   index: httpResponses.getIndex,
 };
 
@@ -35,6 +39,8 @@ const onRequest = (request, response) => {
   // Parse URL
   const protocol = request.connection.encrypted ? 'https' : 'http';
   const parsedURL = new URL(request.url, `${protocol}://${request.headers.host}`);
+  // Query Params
+  request.queryParams = Object.fromEntries(parsedURL.searchParams);
   if (urlStruct[parsedURL.pathname]) {
     // Check if POST
     if (request.method !== 'POST') {
@@ -44,7 +50,7 @@ const onRequest = (request, response) => {
     }
   } else {
     // default line
-    urlStruct['/notReal'](request, response);
+    urlStruct.notFound(request, response);
   }
 };
 
