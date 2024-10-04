@@ -8,9 +8,10 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const urlStruct = {
   '/': httpResponses.getIndex,
   '/style.css': httpResponses.getCSS,
+  '/client.js': httpResponses.getJS,
   '/getPokemon': jsonResponses.getPokemon,
   '/getPokemonType': jsonResponses.getPokemonType,
-  // '/getPokemonSize': jsonResponses.getPokemonSize,
+  '/getEvolvedPokemon': jsonResponses.getEvolvedPokemon,
   '/getRandomPokemon': jsonResponses.getRandomPokemon,
   // '/addPokemon': jsonResponses.addPokemon, // POST for name, type, size,
   // '/addEvolution': jsonResponses.addEvolution,

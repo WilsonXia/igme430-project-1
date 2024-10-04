@@ -24,7 +24,7 @@ const getPokemon = (request, response) => {
   const qID = request.queryParams.id;
   if (qName) {
     // Find the pokemon that has the inputted name
-    data = pkmnData.filter((entry) => entry.name.contains(qName));
+    data = pkmnData.filter((entry) => entry.name.includes(qName));
   } else if (qID) {
     // Find the pokemon that has the ID
     data = pkmnData.filter((entry) => entry.id === qID);
@@ -69,9 +69,30 @@ const getPokemonType = (request, response) => {
   data = { response: data };
   handleResponse(request, response, 200, data);
 };
-// const getPokemonSize = (request, response) => {
-//   // Gets Pokemon within the min or max height
-// };
+const getEvolvedPokemon = (request, response) => {
+  // Gets the data for the next evolution of the pokemon requested
+  let data = [];
+  let rootData;
+  // Build Data based on params
+  const qName = request.queryParams.name;
+  if (qName) {
+    // First get the pre-evolution pokemon (the roots)
+    rootData = pkmnData.filter((entry) => entry.name.includes(qName))
+    // Then get the names of their next evolution if they exist
+      .map((entry) => {
+        if (entry.next_evolution) {
+          // Check if evolution exists
+          return entry.next_evolution[0].name;
+        }
+        return null;
+      });
+    // Using these names, get the exact pokemon from pkmnData
+    data = rootData.map((nextEvo) => pkmnData.filter((entry) => entry.name === nextEvo)[0])
+    .filter(entry => entry);
+  }
+  data = { response: data };
+  handleResponse(request, response, 200, data);
+};
 const getRandomPokemon = (request, response) => {
   // Gets a random pokemon from the dataset, followed by amount
   const randomIndex = Math.random * pkmnData.length;
@@ -121,7 +142,7 @@ const notFound = (request, response) => {
 module.exports = {
   getPokemon,
   getPokemonType,
-  // getPokemonSize,
+  getEvolvedPokemon,
   getRandomPokemon,
   notFound,
   //   addUser,
