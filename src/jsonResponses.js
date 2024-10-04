@@ -69,6 +69,7 @@ const getPokemonType = (request, response) => {
   data = { response: data };
   handleResponse(request, response, 200, data);
 };
+
 const getEvolvedPokemon = (request, response) => {
   // Gets the data for the next evolution of the pokemon requested
   let data = [];
@@ -93,9 +94,11 @@ const getEvolvedPokemon = (request, response) => {
   data = { response: data };
   handleResponse(request, response, 200, data);
 };
+
 const getRandomPokemon = (request, response) => {
   // Gets a random pokemon from the dataset, followed by amount
-  const randomIndex = Math.random * pkmnData.length;
+  const randomIndex = parseInt(Math.random() * pkmnData.length);
+  console.log(`Index chosen: ${randomIndex}`);
   let data = pkmnData[randomIndex];
   data = { response: data };
   handleResponse(request, response, 200, data);
