@@ -15,6 +15,12 @@ const handleResponse = (request, response, code, data) => {
   response.end();
 };
 
+const retrievePKMN = (name) => {
+  // Given the name is the exact name
+  const entry = pkmnData.filter(pkmn => pkmn.name === name);
+  return entry ? entry[0] : entry;
+}
+
 const getPokemon = (request, response) => {
   // Gets Pokemon based on name or ID
   // Returns the first pokemon otherwise
@@ -79,7 +85,7 @@ const getEvolvedPokemon = (request, response) => {
   if (qName) {
     // First get the pre-evolution pokemon (the roots)
     rootData = pkmnData.filter((entry) => entry.name.includes(qName))
-    // Then get the names of their next evolution if they exist
+      // Then get the names of their next evolution if they exist
       .map((entry) => {
         if (entry.next_evolution) {
           // Check if evolution exists
@@ -89,7 +95,7 @@ const getEvolvedPokemon = (request, response) => {
       });
     // Using these names, get the exact pokemon from pkmnData
     data = rootData.map((nextEvo) => pkmnData.filter((entry) => entry.name === nextEvo)[0])
-    .filter(entry => entry);
+      .filter((entry) => entry);
   }
   data = { response: data };
   handleResponse(request, response, 200, data);
@@ -97,7 +103,7 @@ const getEvolvedPokemon = (request, response) => {
 
 const getRandomPokemon = (request, response) => {
   // Gets a random pokemon from the dataset, followed by amount
-  const randomIndex = parseInt(Math.random() * pkmnData.length);
+  const randomIndex = parseInt(Math.random() * pkmnData.length, 10);
   console.log(`Index chosen: ${randomIndex}`);
   let data = pkmnData[randomIndex];
   data = { response: data };
@@ -111,6 +117,26 @@ const notFound = (request, response) => {
   };
   handleResponse(request, response, 404, data);
 };
+
+const addPokemon = (request, response) => {
+  // POST a pokemon given a name and typing
+  // Also tag it as a custom Pokemon
+  const data = { message: 'A Name and Type are required to create a Pokemon' };
+  // Destructuring
+  const { name, type } = request.body;
+  if (!name || !type) {
+    // Throw error
+    data.id = 'missingFields';
+    handleResponse(request, response, 400, data);
+  } else {
+    let code = 204;
+    if (!retrievePKMN(name)) {
+      // Create the PKMN
+      code = 201;
+      pkmnData.push({ name, id: pkmnData.length });
+    }
+  }
+}
 
 // const addUser = (request, response) => {
 //   const data = {
