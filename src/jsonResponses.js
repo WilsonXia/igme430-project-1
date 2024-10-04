@@ -17,9 +17,9 @@ const handleResponse = (request, response, code, data) => {
 
 const retrievePKMN = (name) => {
   // Given the name is the exact name
-  const entry = pkmnData.filter(pkmn => pkmn.name === name);
+  const entry = pkmnData.filter((pkmn) => pkmn.name === name);
   return entry ? entry[0] : entry;
-}
+};
 
 const getPokemon = (request, response) => {
   // Gets Pokemon based on name or ID
@@ -123,8 +123,8 @@ const addPokemon = (request, response) => {
   // Also tag it as a custom Pokemon
   const data = { message: 'A Name and Type are required to create a Pokemon' };
   // Destructuring
-  const { name, type } = request.body;
-  if (!name || !type) {
+  const { name, typeA, typeB } = request.body;
+  if (!name || !typeA) {
     // Throw error
     data.id = 'missingFields';
     handleResponse(request, response, 400, data);
@@ -133,46 +133,28 @@ const addPokemon = (request, response) => {
     if (!retrievePKMN(name)) {
       // Create the PKMN
       code = 201;
-      pkmnData.push({ name, id: pkmnData.length });
+      pkmnData.push({ name, id: pkmnData.length + 1 });
+      data.message = `${name} created successfully!`;
+    }
+    // Update typing
+    retrievePKMN(name).type = [typeA];
+    if(typeB){
+      retrievePKMN(name).type.push(typeB);
+    }
+    if (code === 201) {
+      handleResponse(request, response, code, data);
+    } else {
+      handleResponse(request, response, code, {});
     }
   }
-}
-
-// const addUser = (request, response) => {
-//   const data = {
-//     message: 'Name and Age are both required.',
-//   };
-//   // Destructuring
-//   const { name, age } = request.body;
-//   // Check if they exist
-//   if (!name || !age) {
-//     // If they dont, throw the error
-//     data.id = 'missingFields';
-//     handleResponse(request, response, 400, data);
-//   } else {
-//     // They both exist, so check if updating or adding
-//     let code = 204;
-//     if (!users[name]) {
-//       // Create the user and add them to the list
-//       users[name] = { name };
-//       data.message = 'Created Successfully';
-//       code = 201;
-//     }
-//     // Update the age
-//     users[name].age = age;
-//     if (code === 201) {
-//       handleResponse(request, response, code, data);
-//     } else {
-//       handleResponse(request, response, code, {});
-//     }
-//   }
-// };
+};
 
 module.exports = {
   getPokemon,
   getPokemonType,
   getEvolvedPokemon,
   getRandomPokemon,
+  addPokemon,
   notFound,
   //   addUser,
 };
