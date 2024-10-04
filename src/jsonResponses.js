@@ -133,15 +133,57 @@ const addPokemon = (request, response) => {
     if (!retrievePKMN(name)) {
       // Create the PKMN
       code = 201;
-      pkmnData.push({ name, id: pkmnData.length + 1 });
+      pkmnData.push({
+        name, id: pkmnData.length + 1, num: `${pkmnData.length + 1}`, isCustom: true,
+      });
       data.message = `${name} created successfully!`;
     }
     // Update typing
     retrievePKMN(name).type = [typeA];
-    if(typeB){
+    if (typeB) {
       retrievePKMN(name).type.push(typeB);
     }
     if (code === 201) {
+      handleResponse(request, response, code, data);
+    } else {
+      handleResponse(request, response, code, {});
+    }
+  }
+};
+
+const addEvolution = (request, response) => {
+  // POST update an evolution list given an EXISTING Pokemon
+  const data = { message: 'An Pre-Evolution and a Evolution are required.' };
+  // Destructuring
+  const { preEvolution, evolution } = request.body;
+  if (!preEvolution || !evolution) {
+    // Throw error
+    data.id = 'missingParams';
+    handleResponse(request, response, 400, data);
+  } else {
+    let code = 204;
+    const preEvoData = retrievePKMN(preEvolution);
+    const evoData = retrievePKMN(evolution);
+    if (!preEvoData) {
+      // Throw error
+      code = 400;
+      data.id = 'preEvoNotFound';
+      data.message = 'The inputted Pre-evolution must already exist in the database.';
+    } else if (!evoData) {
+      // Throw another error
+      code = 400;
+      data.id = 'evoNotFound';
+      data.message = 'The inputted Evolution must already exist in the database.';
+    } else {
+      // Update the next Evolution list depending on whether it exists or not
+      const nextEvolution = { num: evoData.num, name: `${evoData.name}` };
+      if(preEvoData.next_evolution){
+        preEvoData.next_evolution.push(nextEvolution);
+      } else {
+        preEvoData.next_evolution = [nextEvolution];
+      }
+    }
+    if (code === 400) {
       handleResponse(request, response, code, data);
     } else {
       handleResponse(request, response, code, {});
@@ -155,6 +197,6 @@ module.exports = {
   getEvolvedPokemon,
   getRandomPokemon,
   addPokemon,
+  addEvolution,
   notFound,
-  //   addUser,
 };

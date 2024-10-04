@@ -14,7 +14,7 @@ const urlStruct = {
   '/getEvolvedPokemon': jsonResponses.getEvolvedPokemon,
   '/getRandomPokemon': jsonResponses.getRandomPokemon,
   '/addPokemon': jsonResponses.addPokemon,
-  // '/addEvolution': jsonResponses.addEvolution,
+  '/addEvolution': jsonResponses.addEvolution,
   notFound: jsonResponses.notFound,
   index: httpResponses.getIndex,
 };
