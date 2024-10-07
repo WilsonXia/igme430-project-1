@@ -27,7 +27,7 @@ const getPokemon = (request, response) => {
   let data;
   // Build Data based on query parameters
   const qName = request.queryParams.name;
-  const qID = request.queryParams.id;
+  const qID = parseInt(request.queryParams.id);
   if (qName) {
     // Find the pokemon that has the inputted name
     data = pkmnData.filter((entry) => entry.name.includes(qName));
