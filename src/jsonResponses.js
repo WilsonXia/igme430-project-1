@@ -26,11 +26,13 @@ const getPokemon = (request, response) => {
   // Returns the first pokemon otherwise
   let data;
   // Build Data based on query parameters
-  const qName = request.queryParams.name;
-  const qID = parseInt(request.queryParams.id);
+  let qName = request.queryParams.name;
+  // sanitize name
+  qName = qName.trim().toLowerCase();
+  const qID = parseInt(request.queryParams.id, 10);
   if (qName) {
     // Find the pokemon that has the inputted name
-    data = pkmnData.filter((entry) => entry.name.includes(qName));
+    data = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName));
   } else if (qID) {
     // Find the pokemon that has the ID
     data = pkmnData.filter((entry) => entry.id === qID);
@@ -177,7 +179,7 @@ const addEvolution = (request, response) => {
     } else {
       // Update the next Evolution list depending on whether it exists or not
       const nextEvolution = { num: evoData.num, name: `${evoData.name}` };
-      if(preEvoData.next_evolution){
+      if (preEvoData.next_evolution) {
         preEvoData.next_evolution.push(nextEvolution);
       } else {
         preEvoData.next_evolution = [nextEvolution];
