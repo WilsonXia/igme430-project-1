@@ -8,6 +8,7 @@ const init = () => {
   const getEvolvedPokemonForm = document.querySelector('#getEvolvedPokemonForm');
   const getRandomPokemonForm = document.querySelector('#getRandomPokemonForm');
   const addPokemonForm = document.querySelector('#addPokemonForm');
+  const addEvolutionForm = document.querySelector('#addEvolutionForm');
   // Setup elements
   utils.setUpTypeSelectors(addPokemonForm);
   utils.setUpTypeSelectors(getPokemonTypeForm);
@@ -17,6 +18,7 @@ const init = () => {
   formSetup.setUpGetEvolvedPokemon(getEvolvedPokemonForm);
   formSetup.setUpGetRandomPokemon(getRandomPokemonForm);
   formSetup.setUpAddPokemon(addPokemonForm);
+  formSetup.setUpAddEvolution(addEvolutionForm);
 };
 
 window.onload = init;

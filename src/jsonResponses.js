@@ -83,7 +83,7 @@ const getEvolvedPokemon = (request, response) => {
   let data = [];
   let rootData;
   // Build Data based on params
-  const qName = request.queryParams.name;
+  const qName = request.queryParams.name.trim().toLowerCase();
   if (qName) {
     // First get the pre-evolution pokemon (the roots)
     rootData = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName))

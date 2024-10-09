@@ -48,8 +48,8 @@ const setUpAddPokemon = (form) => {
 
 const setUpAddEvolution = (form) => {
     utils.setUpFormSubmit(form, () => {
-        const fPreEvolution = form.querySelector('#preEvolution').value;
-        const fEvolution = form.querySelector('#evolution').value;
+        const fPreEvolution = form.querySelector('#preEvolutionField').value;
+        const fEvolution = form.querySelector('#evolutionField').value;
         const formData = `preEvolution=${fPreEvolution}&evolution=${fEvolution}`;
         utils.fetchData(form.action, 'POST', formData);
     });

@@ -19,10 +19,12 @@ const PKMN_TYPES = [
   'Dark',
   'Fairy',
 ]
+
 const setUpTypeSelectors = (form) => {
   form.querySelector('#typeA').innerHTML = generateTypeSelector();
   form.querySelector('#typeB').innerHTML = generateTypeSelector();
 }
+
 const generateTypeSelector = () => {
   let typeSelector = '';
   for (const type of PKMN_TYPES) {
@@ -56,7 +58,7 @@ const handleResponse = async (response, method) => {
   content.innerHTML = `<h2>${content.innerHTML}</h2>`;
 
   // Load in JSON
-  if (method.toUpperCase() !== 'HEAD') {
+  if (method.toUpperCase() !== 'HEAD' && response.status !== 204 ) {
     let resObj = await response.json();
     console.log(resObj);
     if (resObj.response) {
