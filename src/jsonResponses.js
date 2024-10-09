@@ -33,14 +33,20 @@ const getPokemon = (request, response) => {
   if (qName) {
     // Find the pokemon that has the inputted name
     data = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName));
+    if(data.length <= 0) {
+      data = { message: "This Pokemon is unknown"};
+    }
   } else if (qID) {
     // Find the pokemon that has the ID
     data = pkmnData.filter((entry) => entry.id === qID);
   } else {
-    // Load id 1
+    // Load default, id 1
     data = pkmnData.filter((entry) => entry.id === 1);
   }
-  data = { response: data };
+  // Convert to Object if necessary
+  if(!data.message){
+    data = { response: data };
+  }
   // Handle Reponse
   handleResponse(request, response, 200, data);
 };
@@ -74,33 +80,59 @@ const getPokemonType = (request, response) => {
     // Apply just the second filter
     data = pkmnData.filter((entry) => checkType(entry, qTypeB));
   }
-  data = { response: data };
+  // Check if data was found
+  if(data.length <= 0) {
+    data = { message: "This Typing is undiscovered"};
+  }
+  // Convert to JSON if necessary
+  if(!data.message){
+    data = { response: data };
+  }
   handleResponse(request, response, 200, data);
 };
 
 const getEvolvedPokemon = (request, response) => {
   // Gets the data for the next evolution of the pokemon requested
-  let data = [];
+  let data;
+  let code = 200;
   let rootData;
   // Build Data based on params
   const qName = request.queryParams.name.trim().toLowerCase();
   if (qName) {
     // First get the pre-evolution pokemon (the roots)
-    rootData = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName))
-      // Then get the names of their next evolution if they exist
-      .map((entry) => {
+    rootData = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName));
+    // Then get the names of their next evolution if they exist
+    data = rootData.map((entry) => {
         if (entry.next_evolution) {
           // Check if evolution exists
           return entry.next_evolution[0].name;
         }
         return null;
       });
-    // Using these names, get the exact pokemon from pkmnData
-    data = rootData.map((nextEvo) => pkmnData.filter((entry) => entry.name === nextEvo)[0])
-      .filter((entry) => entry);
+    // Using these names, get the exact pokemon data from pkmnData
+    data = data.map((nextEvo) => pkmnData.filter((entry) => entry.name === nextEvo)[0])
+      .filter((entry) => entry); // Sanitize the array
+    // Lastly point the evolutions to their pre-evolutions if they exist
+    for(const preEvo of rootData) {
+      if(preEvo.next_evolution){
+        const pokemon = data.find(evolution => evolution.name === preEvo.next_evolution[0].name);
+        pokemon.pre_evolution = preEvo.name;
+      }
+    }
   }
-  data = { response: data };
-  handleResponse(request, response, 200, data);
+  else{
+    data = { message: 'A Name is required.'};
+    code = 400;
+  }
+  // Check if data was found
+  if(data.length <= 0) {
+    data = { message: "This Pokemon is at its last stage"};
+  }
+  // Convert to JSON if necessary
+  if(!data.message){
+    data = { response: data };
+  }
+  handleResponse(request, response, code, data);
 };
 
 const getRandomPokemon = (request, response) => {
