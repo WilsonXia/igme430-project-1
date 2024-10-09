@@ -86,7 +86,7 @@ const getEvolvedPokemon = (request, response) => {
   const qName = request.queryParams.name;
   if (qName) {
     // First get the pre-evolution pokemon (the roots)
-    rootData = pkmnData.filter((entry) => entry.name.includes(qName))
+    rootData = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName))
       // Then get the names of their next evolution if they exist
       .map((entry) => {
         if (entry.next_evolution) {

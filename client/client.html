@@ -8,8 +8,9 @@
 <body>
   <h1>The Kanto Pokedex API</h2>
     <section id="get/head">
-      <h3>/getPokemon</h3>
+      <h2>GET / HEAD</h2>
       <form id="getPokemonForm" action="/getPokemon" method="get">
+        <h3>/getPokemon</h3>
         <label for="name">Name: </label>
         <input id="nameField" type="text" name="name" />
         <label for="id">ID Number: </label>
@@ -21,10 +22,52 @@
         </select>
         <input type="submit" value="Retrieve Data" />
       </form>
+      <form id="getPokemonTypeForm" action="/getPokemonType" method="get">
+        <h3>/getPokemonType</h3>
+        <label for="typeA">Type 1: </label>
+        <select id="typeA">
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="grass">Grass</option>
+        </select>
+        <label for="typeB">Type 2: </label>
+        <select id="typeB">
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="grass">Grass</option>
+        </select>
+        <label for="method">Method: </label>
+        <select id="methodSelect" name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+        <input type="submit" value="Retrieve Data" />
+      </form>
+      <form id="getEvolvedPokemonForm" action="/getEvolvedPokemon" method="get">
+        <h3>/getEvolvedPokemon</h3>
+        <label for="name">Name: </label>
+        <input id="nameField" type="text" name="name" />
+        <label for="method">Method: </label>
+        <select id="methodSelect" name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+        <input type="submit" value="Retrieve Data" />
+      </form>
+      <form id="getRandomPokemonForm" action="/getRandomPokemon" method="get">
+        <h3>/getRandomPokemon</h3>
+        <label for="method">Method: </label>
+        <select id="methodSelect" name="method">
+          <option value="get">GET</option>
+          <option value="head">HEAD</option>
+        </select>
+        <input type="submit" value="Retrieve Data" />
+      </form>
     </section>
     <section id="post">
-      <h3>/addPokemon</h3>
+      <h2>POST</h2>
       <form id="addPokemonForm" action="/addPokemon" method="post">
+        <h3>/addPokemon</h3>
         <label for="name">Name: </label>
         <input id="nameField" type="text" name="name"/>
         <label for="typeA">Type 1: </label>
