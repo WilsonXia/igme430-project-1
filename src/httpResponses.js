@@ -10,7 +10,6 @@ const icon = fs.readFileSync(`${__dirname}/../assets/images/pkdex.png`);
 
 const documentation = fs.readFileSync(`${__dirname}/../documentation/documentation.html`);
 
-
 const getIndex = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
   response.write(index);
@@ -60,5 +59,5 @@ module.exports = {
   getCSS,
   getJS,
   getDemoJS,
-  getIcon
+  getIcon,
 };

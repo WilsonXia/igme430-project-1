@@ -1,19 +1,24 @@
 const quiz = require('./quiz.js');
 
+let questionSlide, resultsSlide, startSlide;
+
 const init = () => {
-    // Start
-    console.log('This is the Demo Page.');
-    const questionSlide = document.getElementById('questionSlide');
-    const resultsSlide = document.getElementById('resultsSlide');
+    questionSlide = document.getElementById('questionSlide');
+    resultsSlide = document.getElementById('resultsSlide');
+    startSlide = document.getElementById('startSlide');
+    startBtn = document.getElementById('startBtn');
+    nextBtn = document.getElementById('nextQuestionBtn');
 
-    quiz.fetchRandomPokemon();
-    console.log(`Answer: ${quiz.answer}`)
-    console.log(quiz.wrong)
-}
-
-const toggleSlides = (slideA, slideB) => {
-    slideA.toggle('is-hidden');
-    slideB.toggle('is-hidden');
+    // Setup events
+    startBtn.addEventListener('click', ()=>{
+        quiz.fetchRandomPokemon(questionSlide, resultsSlide);
+        quiz.toggleSlides(startSlide, questionSlide);
+    });
+    
+    nextBtn.addEventListener('click', ()=>{
+        quiz.fetchRandomPokemon(questionSlide, resultsSlide);
+        quiz.toggleSlides(resultsSlide, questionSlide);
+    });
 }
 
 window.onload = init;

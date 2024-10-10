@@ -140,7 +140,6 @@ const getEvolvedPokemon = (request, response) => {
 const getRandomPokemon = (request, response) => {
   // Gets a random pokemon from the dataset, followed by amount
   const randomIndex = parseInt(Math.random() * pkmnData.length, 10);
-  console.log(`Index chosen: ${randomIndex}`);
   let data = pkmnData[randomIndex];
   data = { response: data };
   handleResponse(request, response, 200, data);
