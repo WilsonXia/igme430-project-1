@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Demo</title>
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <script src="/demo.js"></script>
+  <title>Demo</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script src="/demo.js"></script>
 </head>
+
 <body>
+  <!-- navbar -->
+  <nav class="navbar has-shadow is-white">
+    <!-- logo / brand -->
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/icon.png" alt="pokedex">
+      </a>
+      <a class="navbar-burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu is-active" id="nav-links">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          Home
+        </a>
+
+        <a class="navbar-item is-hoverable has-text-weight-bold" href="/demo">
+          Demo
+        </a>
+
+        <a class="navbar-item is-hoverable" href="/documentation">
+          Documentation
+        </a>
+      </div> <!-- end navbar-start -->
+    </div>
+  </nav>
+
   <h1>What's My Weakness?</h2>
-    <canvas></canvas>
-  </body>
+    <main id="content">
+      <div class="is-hidden" id="questionSlide">
+        <h2 id="question">
+          What is POKEMON weak against?
+        </h2>
+        <img id="picture" src="" alt="pokemon">
+        <div id="interface">
+          <button class="button">One</button>
+          <button class="button">Two</button>
+          <button class="button">Three</button>
+          <button class="button">Four</button>
+        </div>
+      </div>
+      <div id="resultsSlide">
+        <h2 id="result">
+          Correct!
+        </h2>
+        <button class="button">Next Question</button>
+      </div>
+    </main>
+</body>
+
 </html>

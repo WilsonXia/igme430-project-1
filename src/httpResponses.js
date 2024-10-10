@@ -5,7 +5,11 @@ const css = fs.readFileSync(`${__dirname}/../client/style.css`);
 const js = fs.readFileSync(`${__dirname}/../hosted/home.js`);
 
 const demo = fs.readFileSync(`${__dirname}/../demo/demo.html`);
-const demoJs = fs.readFileSync(`${__dirname}/../hosted/demo.js`); 
+const demoJs = fs.readFileSync(`${__dirname}/../hosted/demo.js`);
+const icon = fs.readFileSync(`${__dirname}/../assets/images/pkdex.png`);
+
+const documentation = fs.readFileSync(`${__dirname}/../documentation/documentation.html`);
+
 
 const getIndex = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -17,7 +21,13 @@ const getDemo = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
   response.write(demo);
   response.end();
-}
+};
+
+const getDocumentation = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'text/html' });
+  response.write(documentation);
+  response.end();
+};
 
 const getCSS = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/css' });
@@ -37,10 +47,18 @@ const getDemoJS = (request, response) => {
   response.end();
 };
 
+const getIcon = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'image/png' });
+  response.write(icon);
+  response.end();
+};
+
 module.exports = {
   getIndex,
   getDemo,
+  getDocumentation,
   getCSS,
   getJS,
-  getDemoJS
+  getDemoJS,
+  getIcon
 };

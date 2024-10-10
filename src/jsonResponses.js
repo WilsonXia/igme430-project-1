@@ -27,10 +27,10 @@ const getPokemon = (request, response) => {
   let data;
   // Build Data based on query parameters
   let qName = request.queryParams.name;
-  // sanitize name
-  qName = qName.trim().toLowerCase();
   const qID = parseInt(request.queryParams.id, 10);
   if (qName) {
+    // sanitize name
+    qName = qName.trim().toLowerCase();
     // Find the pokemon that has the inputted name
     data = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName));
     if (data.length <= 0) {
@@ -119,9 +119,8 @@ const getEvolvedPokemon = (request, response) => {
         pokemon.pre_evolution = preEvo.name;
         return pokemon;
       }
-      else{
-        return null;
-      }
+
+      return null;
     });
   } else {
     data = { message: 'A Name is required.' };
