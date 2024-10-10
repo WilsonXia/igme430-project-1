@@ -33,8 +33,8 @@ const getPokemon = (request, response) => {
   if (qName) {
     // Find the pokemon that has the inputted name
     data = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName));
-    if(data.length <= 0) {
-      data = { message: "This Pokemon is unknown"};
+    if (data.length <= 0) {
+      data = { message: 'This Pokemon is unknown' };
     }
   } else if (qID) {
     // Find the pokemon that has the ID
@@ -44,7 +44,7 @@ const getPokemon = (request, response) => {
     data = pkmnData.filter((entry) => entry.id === 1);
   }
   // Convert to Object if necessary
-  if(!data.message){
+  if (!data.message) {
     data = { response: data };
   }
   // Handle Reponse
@@ -81,11 +81,11 @@ const getPokemonType = (request, response) => {
     data = pkmnData.filter((entry) => checkType(entry, qTypeB));
   }
   // Check if data was found
-  if(data.length <= 0) {
-    data = { message: "This Typing is undiscovered"};
+  if (data.length <= 0) {
+    data = { message: 'This Typing is undiscovered' };
   }
   // Convert to JSON if necessary
-  if(!data.message){
+  if (!data.message) {
     data = { response: data };
   }
   handleResponse(request, response, 200, data);
@@ -103,33 +103,43 @@ const getEvolvedPokemon = (request, response) => {
     rootData = pkmnData.filter((entry) => entry.name.toLowerCase().includes(qName));
     // Then get the names of their next evolution if they exist
     data = rootData.map((entry) => {
-        if (entry.next_evolution) {
-          // Check if evolution exists
-          return entry.next_evolution[0].name;
-        }
-        return null;
-      });
+      if (entry.next_evolution) {
+        // Check if evolution exists
+        return entry.next_evolution[0].name;
+      }
+      return null;
+    });
     // Using these names, get the exact pokemon data from pkmnData
     data = data.map((nextEvo) => pkmnData.filter((entry) => entry.name === nextEvo)[0])
       .filter((entry) => entry); // Sanitize the array
     // Lastly point the evolutions to their pre-evolutions if they exist
-    for(const preEvo of rootData) {
-      if(preEvo.next_evolution){
-        const pokemon = data.find(evolution => evolution.name === preEvo.next_evolution[0].name);
+    rootData.map((preEvo) => {
+      if (preEvo.next_evolution) {
+        const pokemon = data.find((evolution) => evolution.name === preEvo.next_evolution[0].name);
         pokemon.pre_evolution = preEvo.name;
+        return pokemon;
       }
-    }
-  }
-  else{
-    data = { message: 'A Name is required.'};
+      else{
+        return null;
+      }
+    });
+    // for (const preEvo of rootData) {
+    //   if (preEvo.next_evolution) {
+    //     const pokemon = data.find((evolution) =>
+    // evolution.name === preEvo.next_evolution[0].name);
+    //     pokemon.pre_evolution = preEvo.name;
+    //   }
+    // }
+  } else {
+    data = { message: 'A Name is required.' };
     code = 400;
   }
   // Check if data was found
-  if(data.length <= 0) {
-    data = { message: "This Pokemon is at its last stage"};
+  if (data.length <= 0) {
+    data = { message: 'This Pokemon is at its last stage' };
   }
   // Convert to JSON if necessary
-  if(!data.message){
+  if (!data.message) {
     data = { response: data };
   }
   handleResponse(request, response, code, data);
