@@ -123,13 +123,6 @@ const getEvolvedPokemon = (request, response) => {
         return null;
       }
     });
-    // for (const preEvo of rootData) {
-    //   if (preEvo.next_evolution) {
-    //     const pokemon = data.find((evolution) =>
-    // evolution.name === preEvo.next_evolution[0].name);
-    //     pokemon.pre_evolution = preEvo.name;
-    //   }
-    // }
   } else {
     data = { message: 'A Name is required.' };
     code = 400;

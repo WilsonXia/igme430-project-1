@@ -7,8 +7,10 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
 const urlStruct = {
   '/': httpResponses.getIndex,
+  '/demo': httpResponses.getDemo,
   '/style.css': httpResponses.getCSS,
   '/client.js': httpResponses.getJS,
+  '/demo.js': httpResponses.getDemoJS,
   '/getPokemon': jsonResponses.getPokemon,
   '/getPokemonType': jsonResponses.getPokemonType,
   '/getEvolvedPokemon': jsonResponses.getEvolvedPokemon,

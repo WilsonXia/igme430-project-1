@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Pokedex</title>
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <script src="/client.js"></script>
+  <title>Pokedex</title>
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script src="/client.js"></script>
 </head>
+
 <body>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/demo">Demo</a></li>
+      <li><a href="/docs">Documentation</a></li>
+    </ul>
+  </nav>
   <h1>The Kanto Pokedex API</h2>
     <section id="get/head">
       <h2>GET / HEAD</h2>
@@ -69,7 +78,7 @@
       <form id="addPokemonForm" action="/addPokemon" method="post">
         <h3>/addPokemon</h3>
         <label for="name">Name: </label>
-        <input id="nameField" type="text" name="name"/>
+        <input id="nameField" type="text" name="name" />
         <label for="typeA">Type 1: </label>
         <select id="typeA">
           <option value="fire">Fire</option>
@@ -87,13 +96,14 @@
       <form id="addEvolutionForm" action="/addEvolution" method="post">
         <h3>/addEvolution</h3>
         <label for="preEvolution">Pre-Evolution: </label>
-        <input id="preEvolutionField" type="text" name="preEvolution"/>
+        <input id="preEvolutionField" type="text" name="preEvolution" />
         <label for="evolution">Evolution: </label>
-        <input id="evolutionField" type="text" name="evolution"/>
+        <input id="evolutionField" type="text" name="evolution" />
         <input type="submit" value="Add Evolution" />
       </form>
     </section>
     <section id="content">
     </section>
-  </body>
+</body>
+
 </html>
