@@ -1,0 +1,8 @@
+.wrap {
+    text-wrap: pretty;
+    overflow: scroll;
+}
+
+.fixed-height {
+    max-height: 200px;
+}

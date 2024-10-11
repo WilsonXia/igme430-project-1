@@ -37,34 +37,34 @@ const handleResponse = async (response, method) => {
   const content = document.querySelector('#content');
   switch (response.status) {
     case 200:
-      content.innerHTML = '<b>Success</b>';
+      content.innerHTML = 'Success';
       break;
     case 201:
-      content.innerHTML = '<b>New User Created</b>';
+      content.innerHTML = 'New User Created';
       break;
     case 204:
-      content.innerHTML = '<b>User Info Updated</b>';
+      content.innerHTML = 'User Info Updated';
       break;
     case 400:
-      content.innerHTML = '<b>Invalid Form Submission</b>';
+      content.innerHTML = 'Invalid Form Submission';
       break;
     case 404:
-      content.innerHTML = '<b>Not Found</b>';
+      content.innerHTML = 'Not Found';
       break;
     default:
-      content.innerHTML = '<b>Response Code Not Implemented</b>';
+      content.innerHTML = 'Response Code Not Implemented';
       break;
   }
-  content.innerHTML = `<h2>${content.innerHTML}</h2>`;
+  content.innerHTML = `<h2 class="subtitle">${content.innerHTML}</h2>`;
 
   // Load in JSON
   if (method.toUpperCase() !== 'HEAD' && response.status !== 204 ) {
     let resObj = await response.json();
     console.log(resObj);
     if (resObj.response) {
-      content.innerHTML += `<p>${JSON.stringify(resObj)}</p>`;
+      content.innerHTML += `<p class="box wrap">${JSON.stringify(resObj)}</p>`;
     } else if (resObj.message) {
-      content.innerHTML += `<p>${resObj.message}</p>`;
+      content.innerHTML += `<p class="box wrap">${resObj.message}</p>`;
     }
   }
 }
