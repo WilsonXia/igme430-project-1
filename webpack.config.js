@@ -4,7 +4,8 @@ const path = require('path');
 module.exports = {
     entry: {
         home: './client/client.js',
-        demo: './demo/demo.js'
+        demo: './demo/demo.js',
+        doc: './documentation/doc.js'
     },
     mode: 'development',
     watchOptions: {

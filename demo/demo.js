@@ -1,4 +1,5 @@
 const quiz = require('./quiz.js');
+const hamburger = require(`${__dirname}/../client/hamburger.js`);
 
 let questionSlide, resultsSlide, startSlide;
 
@@ -19,6 +20,9 @@ const init = () => {
         quiz.fetchRandomPokemon(questionSlide, resultsSlide);
         quiz.toggleSlides(resultsSlide, questionSlide);
     });
+
+    // Setup Hamburger
+    hamburger.initHamburger();
 }
 
 window.onload = init;

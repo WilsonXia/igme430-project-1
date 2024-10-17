@@ -1,5 +1,6 @@
 const utils = require('./utility.js');
 const formSetup = require('./formSetup.js');
+const hamburger = require('./hamburger.js');
 
 const init = () => {
   // Retrieve DOC elements
@@ -19,6 +20,8 @@ const init = () => {
   formSetup.setUpGetRandomPokemon(getRandomPokemonForm);
   formSetup.setUpAddPokemon(addPokemonForm);
   formSetup.setUpAddEvolution(addEvolutionForm);
+  // Setup hamburger
+  hamburger.initHamburger();
 };
 
 window.onload = init;

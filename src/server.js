@@ -12,6 +12,7 @@ const urlStruct = {
   '/style.css': httpResponses.getCSS,
   '/client.js': httpResponses.getJS,
   '/demo.js': httpResponses.getDemoJS,
+  '/doc.js': httpResponses.getDocJS,
   '/icon.png': httpResponses.getIcon,
   '/getPokemon': jsonResponses.getPokemon,
   '/getPokemonType': jsonResponses.getPokemonType,

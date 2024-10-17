@@ -9,6 +9,7 @@ const demoJs = fs.readFileSync(`${__dirname}/../hosted/demo.js`);
 const icon = fs.readFileSync(`${__dirname}/../assets/images/pkdex.png`);
 
 const documentation = fs.readFileSync(`${__dirname}/../documentation/documentation.html`);
+const docJS = fs.readFileSync(`${__dirname}/../hosted/doc.js`);
 
 const getIndex = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -46,6 +47,12 @@ const getDemoJS = (request, response) => {
   response.end();
 };
 
+const getDocJS = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'text/js' });
+  response.write(docJS);
+  response.end();
+};
+
 const getIcon = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'image/png' });
   response.write(icon);
@@ -59,5 +66,6 @@ module.exports = {
   getCSS,
   getJS,
   getDemoJS,
+  getDocJS,
   getIcon,
 };

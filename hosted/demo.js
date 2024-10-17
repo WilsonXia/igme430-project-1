@@ -9,13 +9,23 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./client/hamburger.js":
+/*!*****************************!*\
+  !*** ./client/hamburger.js ***!
+  \*****************************/
+/***/ ((module) => {
+
+eval("const initHamburger = () => { \r\n    // mobile menu\r\n    const burgerIcon = document.querySelector('#burger');\r\n    const navbarMenu = document.querySelector('#nav-links');\r\n\r\n    burgerIcon.addEventListener('click', () => {\r\n        navbarMenu.classList.toggle('is-active');\r\n    });\r\n}\r\n\r\nmodule.exports = {\r\n    initHamburger\r\n}\n\n//# sourceURL=webpack://igme430-project-1/./client/hamburger.js?");
+
+/***/ }),
+
 /***/ "./demo/demo.js":
 /*!**********************!*\
   !*** ./demo/demo.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const quiz = __webpack_require__(/*! ./quiz.js */ \"./demo/quiz.js\");\r\n\r\nlet questionSlide, resultsSlide, startSlide;\r\n\r\nconst init = () => {\r\n    questionSlide = document.getElementById('questionSlide');\r\n    resultsSlide = document.getElementById('resultsSlide');\r\n    startSlide = document.getElementById('startSlide');\r\n    startBtn = document.getElementById('startBtn');\r\n    nextBtn = document.getElementById('nextQuestionBtn');\r\n\r\n    // Setup events\r\n    startBtn.addEventListener('click', ()=>{\r\n        quiz.fetchRandomPokemon(questionSlide, resultsSlide);\r\n        quiz.toggleSlides(startSlide, questionSlide);\r\n    });\r\n    \r\n    nextBtn.addEventListener('click', ()=>{\r\n        quiz.fetchRandomPokemon(questionSlide, resultsSlide);\r\n        quiz.toggleSlides(resultsSlide, questionSlide);\r\n    });\r\n}\r\n\r\nwindow.onload = init;\n\n//# sourceURL=webpack://igme430-project-1/./demo/demo.js?");
+eval("const quiz = __webpack_require__(/*! ./quiz.js */ \"./demo/quiz.js\");\r\nconst hamburger = __webpack_require__(/*! ./client/hamburger.js */ \"./client/hamburger.js\");\r\n\r\nlet questionSlide, resultsSlide, startSlide;\r\n\r\nconst init = () => {\r\n    questionSlide = document.getElementById('questionSlide');\r\n    resultsSlide = document.getElementById('resultsSlide');\r\n    startSlide = document.getElementById('startSlide');\r\n    startBtn = document.getElementById('startBtn');\r\n    nextBtn = document.getElementById('nextQuestionBtn');\r\n\r\n    // Setup events\r\n    startBtn.addEventListener('click', ()=>{\r\n        quiz.fetchRandomPokemon(questionSlide, resultsSlide);\r\n        quiz.toggleSlides(startSlide, questionSlide);\r\n    });\r\n    \r\n    nextBtn.addEventListener('click', ()=>{\r\n        quiz.fetchRandomPokemon(questionSlide, resultsSlide);\r\n        quiz.toggleSlides(resultsSlide, questionSlide);\r\n    });\r\n\r\n    // Setup Hamburger\r\n    hamburger.initHamburger();\r\n}\r\n\r\nwindow.onload = init;\n\n//# sourceURL=webpack://igme430-project-1/./demo/demo.js?");
 
 /***/ }),
 
