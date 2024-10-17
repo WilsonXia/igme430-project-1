@@ -35,30 +35,37 @@ const generateTypeSelector = () => {
 
 const handleResponse = async (response, method) => {
   const content = document.querySelector('#content');
+  let style;
   switch (response.status) {
     case 200:
       content.innerHTML = 'Success';
+      style = 'has-text-success';
       break;
     case 201:
       content.innerHTML = 'New User Created';
+      style = 'has-text-success';
       break;
     case 204:
       content.innerHTML = 'User Info Updated';
+      style = 'has-text-success';
       break;
     case 400:
       content.innerHTML = 'Invalid Form Submission';
+      style = 'has-text-danger';
       break;
     case 404:
       content.innerHTML = 'Not Found';
+      style = 'has-text-danger';
       break;
     default:
       content.innerHTML = 'Response Code Not Implemented';
+      style = 'has-text-danger';
       break;
   }
-  content.innerHTML = `<h2 class="subtitle">${content.innerHTML}</h2>`;
+  content.innerHTML = `<h2 class="subtitle ${style}">${content.innerHTML}</h2>`;
 
   // Load in JSON
-  if (method.toUpperCase() !== 'HEAD' && response.status !== 204 ) {
+  if (method.toUpperCase() !== 'HEAD' && response.status !== 204) {
     let resObj = await response.json();
     console.log(resObj);
     if (resObj.response) {

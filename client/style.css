@@ -1,8 +1,31 @@
-.wrap {
-    text-wrap: pretty;
-    overflow: scroll;
+.fixed-height {
+    max-height: 80vh;
 }
 
-.fixed-height {
-    max-height: 200px;
+.wrap {
+    word-wrap: break-word;
+    max-height: 100%;
+    overflow: auto;
+}
+
+.stretch {
+    min-height: 40vh;
+    min-width: 40vh;
+}
+
+.has-scroll {
+    overflow-y: scroll;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.has-background-red {
+    background-color: #ba3a3a;
 }

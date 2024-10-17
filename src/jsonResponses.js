@@ -54,31 +54,31 @@ const getPokemon = (request, response) => {
 const getPokemonType = (request, response) => {
   // Gets Pokemon within the types
   let data;
-  const checkType = (entry, qType) => {
-    if (entry.type[0] !== qType) {
-      if (!entry.type[1]) {
-        return false;
-      }
-      return entry.type[1] === qType;
-    }
-    return true;
-  };
+  // const checkType = (entry, qType) => {
+  //   if (entry.type[0] !== qType) {
+  //     if (!entry.type[1]) {
+  //       return false;
+  //     }
+  //     return entry.type[1] === qType;
+  //   }
+  //   return true;
+  // };
   // Build Data based on query Parameters
   const qTypeA = request.queryParams.typeA;
   const qTypeB = request.queryParams.typeB;
   if (!qTypeA && !qTypeB) {
     // If no params given, default to normal type
-    data = pkmnData.filter((entry) => checkType(entry, 'Normal'));
+    data = pkmnData.filter((entry) => entry.type.includes('Normal'));
   } else if (qTypeA) {
     // Apply first filter
-    data = pkmnData.filter((entry) => checkType(entry, qTypeA));
+    data = pkmnData.filter((entry) => entry.type.includes(qTypeA));
     // Apply second filter if applicable
     if (qTypeB) {
-      data = data.filter((entry) => checkType(entry, qTypeB));
+      data = pkmnData.filter((entry) => entry.type.includes(qTypeB));
     }
   } else {
     // Apply just the second filter
-    data = pkmnData.filter((entry) => checkType(entry, qTypeB));
+    data = pkmnData.filter((entry) => entry.type.includes(qTypeB));
   }
   // Check if data was found
   if (data.length <= 0) {

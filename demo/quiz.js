@@ -52,7 +52,7 @@ const handleResponse = async (response, qSlide, rSlide) => {
 
 const setUpQuestion = (qSlide, rSlide) => {
     const question = qSlide.querySelector('#question');
-    question.innerHTML = `What is ${selectedPokemon.name} weak against?`;
+    question.innerHTML = `What is <strong>${selectedPokemon.name}</strong> weak against?`;
     const picture = qSlide.querySelector('#picture');
     picture.src = selectedPokemon.img;
     const buttons = qSlide.querySelector('#interface').children;
@@ -103,9 +103,10 @@ const getThreeWrongAnswers = () => {
     // Sets up 3 distinct wrong answers
     wrong = []; // Clear the list
     wrong.push(getWrongAnswer());
-    possibleWrongAnswers.filter(e => e !== wrong[0]);
+    // Filter out the wrong answers
+    possibleWrongAnswers = possibleWrongAnswers.filter(type => !wrong.includes(type));
     wrong.push(getWrongAnswer());
-    possibleWrongAnswers.filter(e => e !== wrong[1]);
+    possibleWrongAnswers = possibleWrongAnswers.filter(type => !wrong.includes(type));
     wrong.push(getWrongAnswer());
 }
 

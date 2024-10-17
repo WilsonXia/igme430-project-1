@@ -40,181 +40,190 @@
     </div>
   </nav>
 
-  <h1 class="title p-1 has-text-centered">The Kanto Pokedex API</h2>
-    <div class="container">
-      <div class="columns">
-        <div class="column is-half">
-          <section class="section" id="get/head">
-            <h2 class="subtitle has-text-weight-bold">GET / HEAD</h2>
-  
-            <form class="box p-6" id="getPokemonForm" action="/getPokemon" method="get">
-              <div class="field">
-                <h3 class="subtitle">/getPokemon</h3>
+  <!-- body -->
+  <h1 class="title p-1 has-text-centered">The Kanto Pokedex API</h1>
+  <div class="container p-4">
+    <div class="columns">
+      <div class="column is-half fixed-height has-scroll no-scrollbar">
+        <section class="section" id="get/head">
+          <h2 class="subtitle has-text-weight-bold">GET / HEAD</h2>
+
+          <form class="box p-6" id="getPokemonForm" action="/getPokemon" method="get">
+            <div class="field">
+              <h3 class="subtitle">/getPokemon</h3>
+            </div>
+            <div class="field">
+              <label for="name">Name</label>
+              <div class="control">
+                <input id="nameField" type="text" name="name" />
               </div>
-              <div class="field">
-                <label for="name">Name</label>
-                <div class="control">
-                  <input id="nameField" type="text" name="name" />
-                </div>
+            </div>
+            <div class="field">
+              <label for="id">ID Number</label>
+              <div class="control">
+                <input id="idField" type="number" name="id" step="1" />
               </div>
-              <div class="field">
-                <label for="id">ID Number</label>
-                <div class="control">
-                  <input id="idField" type="number" name="id" step="1" />
-                </div>
-              </div>
-              <div class="field has-addons has-addons-right">
-                <div class="control"><label for="method">Method</label>
-                  <select class="select is-small" id="methodSelect" name="method">
-                    <option value="get">GET</option>
-                    <option value="head">HEAD</option>
-                  </select>
-                </div>
-                <div class="control">
-                  <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
-                </div>
-              </div>
-            </form>
-  
-            <form class="box p-6" id="getPokemonTypeForm" action="/getPokemonType" method="get">
-              <div class="field">
-                <h3 class="subtitle">/getPokemonType</h3>
-              </div>
-              <div class="field">
-                <label for="typeA">Type 1</label>
-                <select class="select" id="typeA">
-                  <option value="fire">Fire</option>
-                  <option value="water">Water</option>
-                  <option value="grass">Grass</option>
+            </div>
+            <div class="field has-addons has-addons-right">
+              <div class="control"><label for="method">Method</label>
+                <select class="select is-small" id="methodSelect" name="method">
+                  <option value="get">GET</option>
+                  <option value="head">HEAD</option>
                 </select>
               </div>
-              <div class="field">
-                <label for="typeB">Type 2</label>
-                <select class="select" id="typeB">
-                  <option value="fire">Fire</option>
-                  <option value="water">Water</option>
-                  <option value="grass">Grass</option>
+              <div class="control">
+                <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
+              </div>
+            </div>
+          </form>
+
+          <form class="box p-6" id="getPokemonTypeForm" action="/getPokemonType" method="get">
+            <div class="field">
+              <h3 class="subtitle">/getPokemonType</h3>
+            </div>
+            <div class="field">
+              <label for="typeA">Type 1</label>
+              <select class="select" id="typeA">
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="typeB">Type 2</label>
+              <select class="select" id="typeB">
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+              </select>
+            </div>
+            <div class="field has-addons has-addons-right">
+              <div class="control"><label for="method">Method</label>
+                <select class="select is-small" id="methodSelect" name="method">
+                  <option value="get">GET</option>
+                  <option value="head">HEAD</option>
                 </select>
               </div>
-              <div class="field has-addons has-addons-right">
-                <div class="control"><label for="method">Method</label>
-                  <select class="select is-small" id="methodSelect" name="method">
-                    <option value="get">GET</option>
-                    <option value="head">HEAD</option>
-                  </select>
-                </div>
-                <div class="control">
-                  <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
-                </div>
+              <div class="control">
+                <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
               </div>
-            </form>
-  
-            <form class="box p-6" id="getEvolvedPokemonForm" action="/getEvolvedPokemon" method="get">
-              <div class="field">
-                <h3 class="subtitle">/getEvolvedPokemon</h3>
+            </div>
+          </form>
+
+          <form class="box p-6" id="getEvolvedPokemonForm" action="/getEvolvedPokemon" method="get">
+            <div class="field">
+              <h3 class="subtitle">/getEvolvedPokemon</h3>
+            </div>
+            <div class="field">
+              <label for="name">Name</label>
+              <div class="control">
+                <input id="nameField" type="text" name="name" />
               </div>
-              <div class="field">
-                <label for="name">Name: </label>
-                <div class="control">
-                  <input id="nameField" type="text" name="name" />
-                </div>
-              </div>
-              <div class="field has-addons has-addons-right">
-                <div class="control"><label for="method">Method</label>
-                  <select class="select is-small" id="methodSelect" name="method">
-                    <option value="get">GET</option>
-                    <option value="head">HEAD</option>
-                  </select>
-                </div>
-                <div class="control">
-                  <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
-                </div>
-              </div>
-            </form>
-  
-            <form class="box p-6" id="getRandomPokemonForm" action="/getRandomPokemon" method="get">
-              <div class="field">
-                <h3 class="subtitle">/getRandomPokemon</h3>
-              </div>
-              <div class="field has-addons has-addons-right">
-                <div class="control"><label for="method">Method</label>
-                  <select class="select is-small" id="methodSelect" name="method">
-                    <option value="get">GET</option>
-                    <option value="head">HEAD</option>
-                  </select>
-                </div>
-                <div class="control">
-                  <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
-                </div>
-              </div>
-            </form>
-  
-          </section>
-          <section class="section" id="post">
-            <h2 class="subtitle has-text-weight-bold	">POST</h2>
-  
-            <form class="box p-6" id="addPokemonForm" action="/addPokemon" method="post">
-              <div class="field">
-                <h3 class="subtitle">/addPokemon</h3>
-              </div>
-              <div class="field">
-                <label for="name">Name</label>
-                <div class="control">
-                  <input class="input" id="nameField" type="text" name="name" />
-                </div>
-              </div>
-              <div class="field">
-                <label for="typeA">Type 1</label>
-                <select class="select" id="typeA">
-                  <option value="fire">Fire</option>
-                  <option value="water">Water</option>
-                  <option value="grass">Grass</option>
+            </div>
+            <div class="field has-addons has-addons-right">
+              <div class="control"><label for="method">Method</label>
+                <select class="select is-small" id="methodSelect" name="method">
+                  <option value="get">GET</option>
+                  <option value="head">HEAD</option>
                 </select>
               </div>
-              <div class="field">
-                <label for="typeB">Type 2</label>
-                <select class="select" id="typeB">
-                  <option value="fire">Fire</option>
-                  <option value="water">Water</option>
-                  <option value="grass">Grass</option>
+              <div class="control">
+                <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
+              </div>
+            </div>
+          </form>
+
+          <form class="box p-6" id="getRandomPokemonForm" action="/getRandomPokemon" method="get">
+            <div class="field">
+              <h3 class="subtitle">/getRandomPokemon</h3>
+            </div>
+            <div class="field has-addons has-addons-right">
+              <div class="control"><label for="method">Method</label>
+                <select class="select is-small" id="methodSelect" name="method">
+                  <option value="get">GET</option>
+                  <option value="head">HEAD</option>
                 </select>
               </div>
-              <div class="field has-addons has-addons-right">
-                <div class="control">
-                  <input class="button is-primary is-small" type="submit" value="Add Pokemon" />
-                </div>
+              <div class="control">
+                <input class="button is-primary is-small" type="submit" value="Retrieve Data" />
               </div>
-            </form>
-  
-            <form class="box p-6" id="addEvolutionForm" action="/addEvolution" method="post">
-              <div class="field">
-                <h3 class="subtitle">/addEvolution</h3>
+            </div>
+          </form>
+
+        </section>
+        <section class="section" id="post">
+          <h2 class="subtitle has-text-weight-bold">POST</h2>
+
+          <form class="box p-6 has-background-red" id="addPokemonForm" action="/addPokemon" method="post">
+            <div class="field">
+              <h3 class="subtitle">/addPokemon</h3>
+            </div>
+            <div class="field">
+              <label for="nameField">Name</label>
+              <div class="control">
+                <input class="input" id="nameField" type="text" name="name" />
               </div>
-              <div class="field">
-                <label for="preEvolution">Pre-Evolution</label>
-                <div class="control">
-                  <input class="input" id="preEvolutionField" type="text" name="preEvolution" />
-                </div>
+            </div>
+            <div class="field">
+              <label for="typeA">Type 1</label>
+              <select class="select" id="typeA">
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="typeB">Type 2</label>
+              <select class="select" id="typeB">
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="grass">Grass</option>
+              </select>
+            </div>
+            <div class="field has-addons has-addons-right">
+              <div class="control">
+                <input class="button is-primary is-small" type="submit" value="Add Pokemon" />
               </div>
-              <div class="field">
-                <label for="evolution">Evolution</label>
-                <div class="control">
-                  <input class="input" id="evolutionField" type="text" name="evolution" />
-                </div>
+            </div>
+          </form>
+
+          <form class="box p-6" id="addEvolutionForm" action="/addEvolution" method="post">
+            <div class="field">
+              <h3 class="subtitle">/addEvolution</h3>
+            </div>
+            <div class="field">
+              <label for="preEvolution">Pre-Evolution</label>
+              <div class="control">
+                <input class="input" id="preEvolutionField" type="text" name="preEvolution" />
               </div>
-              <div class="field has-addons has-addons-right">
-                <div class="control">
-                  <input class="button is-primary is-small" type="submit" value="Add Evolution" />
-                </div>
+            </div>
+            <div class="field">
+              <label for="evolution">Evolution</label>
+              <div class="control">
+                <input class="input" id="evolutionField" type="text" name="evolution" />
               </div>
-            </form>
-          </section>
-        </div>
-        <section class="column is-half fixed-height" id="content">
-          <h2 class="subtitle">This is where content goes.</h2>
+            </div>
+            <div class="field has-addons has-addons-right">
+              <div class="control">
+                <input class="button is-primary is-small" type="submit" value="Add Evolution" />
+              </div>
+            </div>
+          </form>
         </section>
       </div>
+      <div class="column section is-half fixed-height" id="content">
+        <h2 class="subtitle has-text-black">Try testing out any of the endpoints!</h2>
+      </div>
     </div>
+  </div>
+
+  <!-- footer -->
+  <footer class="footer has-background-red">
+    <div class="content has-text-centered">
+      <p>Created by <strong>Wilson Xia</strong></p>
+      <p><strong>RIT 2024</strong></p>
+    </div>
+  </footer>
 </body>
 
 </html>
